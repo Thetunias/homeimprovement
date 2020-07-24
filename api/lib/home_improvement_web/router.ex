@@ -5,8 +5,11 @@ defmodule HomeImprovementWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", HomeImprovementWeb do
+  scope "/" do
     pipe_through :api
+
+    forward "/api", Absinthe.Plug, schema: HomeImprovementApi.Schema
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: HomeImprovementApi.Schema
   end
 
   # Enables LiveDashboard only for development
