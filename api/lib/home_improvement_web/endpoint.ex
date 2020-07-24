@@ -24,7 +24,7 @@ defmodule HomeImprovementWeb.Endpoint do
     at: "/",
     from: :home_improvement,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts images js favicon.ico robots.txt graphql_playground.html)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
