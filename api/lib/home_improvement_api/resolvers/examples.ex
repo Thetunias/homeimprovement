@@ -1,4 +1,6 @@
 defmodule HomeImprovementApi.Resolvers.Examples do
+  @moduledoc false
+
   @examples [
     %{id: 1, text: "Example one."}
   ]

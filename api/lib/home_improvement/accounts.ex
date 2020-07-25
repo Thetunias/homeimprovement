@@ -5,8 +5,8 @@ defmodule HomeImprovement.Accounts do
 
   import Ecto.Query, warn: false
 
-  alias HomeImprovement.Repo
   alias HomeImprovement.Accounts.User
+  alias HomeImprovement.Repo
 
   @doc """
   Returns the list of users.

@@ -6,6 +6,8 @@ defmodule HomeImprovementApi.DataCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
       import HomeImprovementApi, only: [run: 1, run: 2]
@@ -16,10 +18,10 @@ defmodule HomeImprovementApi.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(HomeImprovement.Repo)
+    :ok = Sandbox.checkout(HomeImprovement.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(HomeImprovement.Repo, {:shared, self()})
+      Sandbox.mode(HomeImprovement.Repo, {:shared, self()})
     end
 
     :ok
