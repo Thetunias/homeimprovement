@@ -47,8 +47,8 @@ jobs:
         run: mix compile --warnings-as-errors
         working-directory: ./api
 
-      - name: Check formatting
-        run: mix format --check-formatted
+      - name: Run linter
+        run: mix lint
         working-directory: ./api
 
       - name: Load PLT Cache
