@@ -7,7 +7,11 @@ defmodule HomeImprovement.AccountsTest do
     alias HomeImprovement.Accounts.User
 
     @valid_attrs %{experience: 42, name_first: "some name_first", name_last: "some name_last"}
-    @update_attrs %{experience: 43, name_first: "some updated name_first", name_last: "some updated name_last"}
+    @update_attrs %{
+      experience: 43,
+      name_first: "some updated name_first",
+      name_last: "some updated name_last"
+    }
     @invalid_attrs %{experience: nil, name_first: nil, name_last: nil}
 
     def user_fixture(attrs \\ %{}) do

@@ -1,4 +1,6 @@
 defmodule HomeImprovement.Accounts.User do
+  @moduledoc false
+
   use HomeImprovement.Schema
 
   import Ecto.Changeset
