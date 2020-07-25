@@ -53,6 +53,7 @@ defmodule HomeImprovement.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:absinthe, "~> 1.5"},
       {:absinthe_plug, "~> 1.5"},
+      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
   end
@@ -69,6 +70,7 @@ defmodule HomeImprovement.MixProject do
       setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
+      lint: ["format --check-formatted", "credo --strict"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
   end
