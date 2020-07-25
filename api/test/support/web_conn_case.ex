@@ -17,6 +17,8 @@ defmodule HomeImprovementWeb.ConnCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
       # Import conveniences for testing with connections
@@ -32,10 +34,10 @@ defmodule HomeImprovementWeb.ConnCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(HomeImprovement.Repo)
+    :ok = Sandbox.checkout(HomeImprovement.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(HomeImprovement.Repo, {:shared, self()})
+      Sandbox.mode(HomeImprovement.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
