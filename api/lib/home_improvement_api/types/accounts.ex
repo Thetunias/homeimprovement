@@ -25,7 +25,6 @@ defmodule HomeImprovementApi.Types.Accounts do
 
   @desc "Example object type."
   object :user do
-      
     @desc "ID of the object."
     field :id, non_null(:id)
 
@@ -47,14 +46,11 @@ defmodule HomeImprovementApi.Types.Accounts do
   ##
 
   object :accounts_queries do
-      
     @desc "Get user by id."
     field :user, :user do
       arg :id, non_null(:id)
       resolve &Resolvers.Accounts.user/2
     end
-
-    
   end
 
   ##
@@ -62,6 +58,5 @@ defmodule HomeImprovementApi.Types.Accounts do
   ##
 
   object :accounts_mutations do
-    
   end
 end
