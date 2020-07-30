@@ -29,7 +29,7 @@ defmodule HomeImprovement.AccountsFactory do
   @doc """
   Creates a user using `HomeImprovement.Accounts.create_user/1`.
   """
-  @spec create_user(Keyword.t()) :: {:ok, [user: User.t()]}
+  @spec create_user(Keyword.t()) :: {:ok, [user: %User{}]}
   def create_user(_ \\ []) do
     {:ok, user} =
       Accounts.create_user(%{
