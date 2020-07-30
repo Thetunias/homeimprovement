@@ -39,6 +39,9 @@ defmodule HomeImprovementApi.Types.Accounts do
 
     @desc "Last name of the user."
     field :name_last, non_null(:string)
+
+    @desc "Experience of the user."
+    field :experience, non_null(:integer)
   end
 
   ##
