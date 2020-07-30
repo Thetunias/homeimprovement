@@ -34,10 +34,10 @@ defmodule HomeImprovementApi.Types.Accounts do
     @desc "Identifies the date and time when the object was last updated."
     field :date_updated, non_null(:datetime)
 
-    @desc "Users First Name"
+    @desc "First name of the user."
     field :name_first, non_null(:string)
 
-    @desc "Users Last Name"
+    @desc "Last name of the user."
     field :name_last, non_null(:string)
   end
 
