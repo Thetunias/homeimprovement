@@ -23,6 +23,18 @@ defmodule HomeImprovementApi.Factories.Query do
         text
       }
     }
+    """,
+    user: """
+    query get_user($id: ID!) {
+      user(id: $id) {
+        id
+        date_inserted
+        date_updated
+        experience
+        name_first
+        name_last
+      }
+    }
     """
   }
 
