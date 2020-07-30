@@ -45,10 +45,10 @@ defmodule HomeImprovement.Accounts do
   ## Examples
 
       iex> get_user(123)
-      {:ok, %User{}}
+      %User{}
 
       iex> get_user(456)
-      {:ok, nil}
+      nil
 
   """
   def get_user(id), do: Repo.get(User, id)
