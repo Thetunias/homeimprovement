@@ -4,7 +4,6 @@ defmodule HomeImprovementApi.Resolvers.Accounts do
   alias HomeImprovement.Accounts
 
   def user(%{id: id}, _resolution) do
-    user = Accounts.get_user!(id)
-    {:ok, user}
+    {:ok, Accounts.get_user(id)}
   end
 end
