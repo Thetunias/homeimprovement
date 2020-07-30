@@ -1,4 +1,4 @@
-defmodule HomeImprovementApi.Factories.Query do
+defmodule HomeImprovementApi.QueryFactory do
   @moduledoc """
   Factories for generating GraphQL queries for use in tests.
   """

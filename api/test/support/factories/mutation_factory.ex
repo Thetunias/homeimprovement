@@ -1,4 +1,4 @@
-defmodule HomeImprovementApi.Factories.Mutation do
+defmodule HomeImprovementApi.MutationFactory do
   @moduledoc """
   Factories for generating GraphQL mutations for use in tests.
   """

@@ -1,7 +1,7 @@
 defmodule HomeImprovementApi.Accounts.QueryTest do
   use HomeImprovementApi.DataCase
 
-  import HomeImprovement.Factories.Accounts,
+  import HomeImprovement.AccountsFactory,
     only: [
       create_user: 1
     ]
