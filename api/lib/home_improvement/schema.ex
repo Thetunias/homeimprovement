@@ -16,7 +16,8 @@ defmodule HomeImprovement.Schema do
 
       @timestamps_opts [
         inserted_at: :date_inserted,
-        updated_at: :date_updated
+        updated_at: :date_updated,
+        type: :utc_datetime
       ]
 
       import Ecto.Changeset, warn: false

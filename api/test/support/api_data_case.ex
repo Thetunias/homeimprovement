@@ -12,8 +12,8 @@ defmodule HomeImprovementApi.DataCase do
     quote do
       import HomeImprovementApi, only: [run: 1, run: 2]
       import HomeImprovementApi.DataCase
-      import HomeImprovementApi.Factories.Query
-      import HomeImprovementApi.Factories.Mutation
+      import HomeImprovementApi.QueryFactory
+      import HomeImprovementApi.MutationFactory
     end
   end
 

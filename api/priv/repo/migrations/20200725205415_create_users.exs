@@ -7,7 +7,11 @@ defmodule HomeImprovement.Repo.Migrations.CreateUsers do
       add :name_last, :string, null: false
       add :experience, :integer, null: false
 
-      timestamps(inserted_at: :date_inserted, updated_at: :date_updated)
+      timestamps(
+        inserted_at: :date_inserted,
+        updated_at: :date_updated,
+        type: :timestamptz
+      )
     end
   end
 end

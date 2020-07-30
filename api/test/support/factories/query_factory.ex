@@ -1,4 +1,4 @@
-defmodule HomeImprovementApi.Factories.Query do
+defmodule HomeImprovementApi.QueryFactory do
   @moduledoc """
   Factories for generating GraphQL queries for use in tests.
   """
@@ -21,6 +21,18 @@ defmodule HomeImprovementApi.Factories.Query do
         date_inserted
         date_updated
         text
+      }
+    }
+    """,
+    user: """
+    query get_user($id: ID!) {
+      user(id: $id) {
+        id
+        date_inserted
+        date_updated
+        experience
+        name_first
+        name_last
       }
     }
     """
