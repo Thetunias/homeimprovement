@@ -24,7 +24,7 @@ defmodule HomeImprovement.CoursesFactory do
   import Ecto.Changeset, warn: false
 
   alias HomeImprovement.Courses
-  alias HomeImprovement.Courses.Course
+  alias HomeImprovement.Courses.{Course, Lesson}
 
   @doc """
   Creates a course using `HomeImprovement.Courses.create_course/1`,
@@ -41,5 +41,25 @@ defmodule HomeImprovement.CoursesFactory do
       })
 
     {:ok, [course: course]}
+  end
+
+  @doc """
+  Creates a lesson using `HomeImprovement.Courses.create_lesson/1`,
+  using `context[:user]` as the creator and `context[:course] as the course.
+
+  Must be used together with `HomeImprovement.AccountsFactory.create_user/1`
+  and `HomeImprovement.CoursesFactory.create_course/1`.
+  """
+  @spec create_lesson(Keyword.t()) :: {:ok, [lesson: %Lesson{}]}
+  def create_lesson(context \\ []) do
+    {:ok, lesson} =
+      Courses.create_lesson(%{
+        name: Faker.Lorem.words(1..5) |> Enum.map_join(" ", &String.capitalize/1),
+        markup: Faker.Lorem.paragraphs() |> Enum.join("\n\n"),
+        id_user_creator: context[:user].id,
+        id_course: context[:course].id
+      })
+
+    {:ok, [lesson: lesson]}
   end
 end
