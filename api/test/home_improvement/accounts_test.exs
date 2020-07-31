@@ -1,80 +1,102 @@
 defmodule HomeImprovement.AccountsTest do
   use HomeImprovement.DataCase
 
+  import HomeImprovement.AccountsFactory,
+    only: [
+      create_user: 1
+    ]
+
   alias HomeImprovement.Accounts
+  alias HomeImprovement.Accounts.User
 
-  describe "users" do
-    alias HomeImprovement.Accounts.User
+  describe ".list_users/0" do
+    setup [:create_user]
 
-    @valid_attrs %{experience: 42, name_first: "some name_first", name_last: "some name_last"}
-    @update_attrs %{
-      experience: 43,
-      name_first: "some updated name_first",
-      name_last: "some updated name_last"
-    }
-    @invalid_attrs %{experience: nil, name_first: nil, name_last: nil}
-
-    def user_fixture(attrs \\ %{}) do
-      {:ok, user} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Accounts.create_user()
-
-      user
-    end
-
-    test "list_users/0 returns all users" do
-      user = user_fixture()
+    test "returns all users", %{user: user} do
       assert Accounts.list_users() == [user]
     end
+  end
 
-    test "get_user!/1 returns the user with given id" do
-      user = user_fixture()
+  describe ".get_user!/1" do
+    setup [:create_user]
+
+    test "returns the user with given id", %{user: user} do
       assert Accounts.get_user!(user.id) == user
     end
+  end
 
-    test "get_user/1 returns the user with given id" do
-      user = user_fixture()
+  describe ".get_user/1" do
+    setup [:create_user]
+
+    test "returns the user with given id", %{user: user} do
       assert Accounts.get_user(user.id) == user
     end
 
-    test "get_user/1 returns nil with invalid id" do
+    test "returns nil with invalid id" do
       assert Accounts.get_user(0) == nil
     end
+  end
 
-    test "create_user/1 with valid data creates a user" do
-      assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
+  describe ".create_user/1" do
+    test "creates a user" do
+      assert {:ok, %User{} = user} =
+               Accounts.create_user(%{
+                 experience: 42,
+                 name_first: "some name_first",
+                 name_last: "some name_last"
+               })
+
       assert user.experience == 42
       assert user.name_first == "some name_first"
       assert user.name_last == "some name_last"
     end
 
-    test "create_user/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Accounts.create_user(@invalid_attrs)
+    test "returns error changeset with invalid data" do
+      assert {:error, %Ecto.Changeset{}} = Accounts.create_user(%{})
     end
+  end
 
-    test "update_user/2 with valid data updates the user" do
-      user = user_fixture()
-      assert {:ok, %User{} = user} = Accounts.update_user(user, @update_attrs)
+  describe ".update_user/2" do
+    setup [:create_user]
+
+    test "updates the user", %{user: user} do
+      assert {:ok, %User{} = user} =
+               Accounts.update_user(user, %{
+                 experience: 43,
+                 name_first: "some updated name_first",
+                 name_last: "some updated name_last"
+               })
+
       assert user.experience == 43
       assert user.name_first == "some updated name_first"
       assert user.name_last == "some updated name_last"
     end
 
-    test "update_user/2 with invalid data returns error changeset" do
-      user = user_fixture()
-      assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
+    test "returns error changeset with invalid data", %{user: user} do
+      assert {:error, %Ecto.Changeset{}} =
+               Accounts.update_user(user, %{
+                 experience: [],
+                 name_first: true,
+                 name_last: 21
+               })
+
       assert user == Accounts.get_user!(user.id)
     end
+  end
 
-    test "delete_user/1 deletes the user" do
-      user = user_fixture()
+  describe ".delete_user/1" do
+    setup [:create_user]
+
+    test "deletes the user", %{user: user} do
       assert {:ok, %User{}} = Accounts.delete_user(user)
       assert_raise Ecto.NoResultsError, fn -> Accounts.get_user!(user.id) end
     end
+  end
 
-    test "change_user/1 returns a user changeset" do
-      user = user_fixture()
+  describe ".change_user/1" do
+    setup [:create_user]
+
+    test "returns a user changeset", %{user: user} do
       assert %Ecto.Changeset{} = Accounts.change_user(user)
     end
   end
