@@ -1,11 +1,16 @@
 defmodule HomeImprovement.Courses.Course do
   @moduledoc false
+
   use HomeImprovement.Schema
+
   import Ecto.Changeset
+
+  alias HomeImprovement.Accounts.User
 
   schema "courses" do
     field :name, :string
-    belongs_to(:user_creator, HomeImprovement.Accounts.User, foreign_key: :id_user_creator)
+
+    belongs_to :user_creator, User, foreign_key: :id_user_creator
 
     timestamps()
   end
