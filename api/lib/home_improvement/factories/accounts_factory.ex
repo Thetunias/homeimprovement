@@ -12,9 +12,9 @@ defmodule HomeImprovement.AccountsFactory do
       import HomeImprovement.AccountsFactory
 
       describe ".function/0" do
-        setup [:create_example]
+        setup [:create_user]
 
-        test "my test", %{example: example} do
+        test "my test", %{user: user} do
           # ...
         end
       end
