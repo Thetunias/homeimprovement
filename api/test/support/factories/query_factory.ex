@@ -35,6 +35,16 @@ defmodule HomeImprovementApi.QueryFactory do
         name_last
       }
     }
+    """,
+    course: """
+    query get_course($id: ID!) {
+      course(id: $id) {
+        id
+        date_inserted
+        date_updated
+        name
+      }
+    }
     """
   }
 
