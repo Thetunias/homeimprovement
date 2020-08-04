@@ -14,5 +14,6 @@ defmodule HomeImprovement.Repo.Migrations.CreateCourses do
     end
 
     create index(:courses, [:id_user_creator])
+    create index(:courses, [:name])
   end
 end

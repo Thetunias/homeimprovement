@@ -20,5 +20,6 @@ defmodule HomeImprovement.Courses.Course do
     course
     |> cast(attrs, [:name, :id_user_creator])
     |> validate_required([:name, :id_user_creator])
+    |> unique_constraint(:name)
   end
 end
