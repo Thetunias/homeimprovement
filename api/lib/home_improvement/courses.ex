@@ -38,6 +38,22 @@ defmodule HomeImprovement.Courses do
   def get_course!(id), do: Repo.get!(Course, id)
 
   @doc """
+  Gets a single course.
+
+  Returns `nil` if the course does not exist.
+
+  ## Examples
+
+      iex> get_course(123)
+      %Course{}
+
+      iex> get_course(456)
+      nill
+
+  """
+  def get_course(id), do: Repo.get(Course, id)
+
+  @doc """
   Creates a course.
 
   ## Examples

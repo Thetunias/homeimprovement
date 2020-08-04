@@ -10,15 +10,18 @@ defmodule HomeImprovementApi.Schema do
   import_types HomeImprovementApi.Types.Custom
   import_types HomeImprovementApi.Types.Examples
   import_types HomeImprovementApi.Types.Accounts
+  import_types HomeImprovementApi.Types.Courses
 
   @desc "The following queries can be performed against this GraphQL API."
   query do
     import_fields :accounts_queries
+    import_fields :courses_queries
   end
 
   @desc "The following mutations can be performed against this GraphQL API."
   mutation do
     import_fields :accounts_mutations
+    import_fields :courses_mutations
   end
 
   # Apply the HandleErrors middleware on every query, subscription or mutation
