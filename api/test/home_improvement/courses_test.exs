@@ -31,6 +31,18 @@ defmodule HomeImprovement.CoursesTest do
     end
   end
 
+  describe ".get_course/1" do
+    setup [:create_user, :create_course]
+
+    test "returns the course with given id", %{course: course} do
+      assert Courses.get_course(course.id) == course
+    end
+
+    test "returns nil with invalid id" do
+      assert Courses.get_course(0) == nil
+    end
+  end
+
   describe ".create_course/1" do
     setup [:create_user]
 
