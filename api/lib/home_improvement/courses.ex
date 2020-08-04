@@ -48,7 +48,7 @@ defmodule HomeImprovement.Courses do
       %Course{}
 
       iex> get_course(456)
-      nill
+      nil
 
   """
   def get_course(id), do: Repo.get(Course, id)
