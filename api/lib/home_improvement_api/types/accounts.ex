@@ -23,7 +23,7 @@ defmodule HomeImprovementApi.Types.Accounts do
   # Types
   ##
 
-  @desc "Example object type."
+  @desc "User object type."
   object :user do
     @desc "ID of the object."
     field :id, non_null(:id)

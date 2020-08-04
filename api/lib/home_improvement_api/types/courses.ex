@@ -34,7 +34,7 @@ defmodule HomeImprovementApi.Types.Courses do
     @desc "Identifies the date and time when the object was last updated."
     field :date_updated, non_null(:datetime)
 
-    @desc " name of the course."
+    @desc "Name of the course."
     field :name, non_null(:string)
   end
 
