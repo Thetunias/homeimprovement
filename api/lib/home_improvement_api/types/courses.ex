@@ -65,6 +65,17 @@ defmodule HomeImprovementApi.Types.Courses do
     field :date_updated, non_null(:datetime)
   end
 
+  @desc "Payload from creating, updating, deleting a course."
+  object :course_payload do
+    field :course, :course
+    field :errors, list_of(non_null(:input_error))
+  end
+
+  input_object :create_course_input do
+    field :name, non_null(:string)
+    field :id_user_creator, non_null(:id)
+  end
+
   ##
   # Queries
   ##
@@ -88,5 +99,10 @@ defmodule HomeImprovementApi.Types.Courses do
   ##
 
   object :courses_mutations do
+    @desc "Create new course."
+    field :create_course, :course_payload do
+      arg :input, non_null(:create_course_input)
+      resolve &Resolvers.Courses.create_course/2
+    end
   end
 end
