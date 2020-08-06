@@ -46,6 +46,9 @@ defmodule HomeImprovementApi.Types.Courses do
     @desc "ID of the parent object."
     field :id_parent, :id
 
+    @desc "ID of the user who created the lesson."
+    field :id_user_creator, non_null(:id)
+
     @desc "ID of the course object."
     field :id_course, non_null(:id)
 

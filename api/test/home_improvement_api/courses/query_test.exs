@@ -39,6 +39,7 @@ defmodule HomeImprovementApi.Courses.QueryTest do
       assert data["lesson"]["markup"] == lesson.markup
       assert data["lesson"]["id_parent"] == nil
       assert data["lesson"]["id_course"]
+      assert data["lesson"]["id_user_creator"]
       assert data["lesson"]["date_inserted"]
       assert data["lesson"]["date_updated"]
     end

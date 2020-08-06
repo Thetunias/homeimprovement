@@ -51,6 +51,7 @@ defmodule HomeImprovementApi.QueryFactory do
       lesson(id: $id) {
         id
         id_course
+        id_user_creator
         id_parent
         date_inserted
         date_updated
