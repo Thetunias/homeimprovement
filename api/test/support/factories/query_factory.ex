@@ -45,6 +45,19 @@ defmodule HomeImprovementApi.QueryFactory do
         name
       }
     }
+    """,
+    lesson: """
+    query get_lesson($id: ID!) {
+      lesson(id: $id) {
+        id
+        id_course
+        id_parent
+        date_inserted
+        date_updated
+        name
+        markup
+      }
+    }
     """
   }
 
