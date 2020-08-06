@@ -44,7 +44,7 @@ defmodule HomeImprovementApi.Types.Courses do
     field :id, non_null(:id)
 
     @desc "ID of the parent object."
-    field :id_parent, non_null(:id)
+    field :id_parent, :id
 
     @desc "ID of the course object."
     field :id_course, non_null(:id)
