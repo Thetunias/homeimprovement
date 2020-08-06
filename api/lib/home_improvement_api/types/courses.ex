@@ -38,6 +38,30 @@ defmodule HomeImprovementApi.Types.Courses do
     field :name, non_null(:string)
   end
 
+  @desc "Lesson object type."
+  object :lesson do
+    @desc "ID of the object."
+    field :id, non_null(:id)
+
+    @desc "ID of the parent object."
+    field :id_parent, non_null(:id)
+
+    @desc "ID of the course object."
+    field :id_course, non_null(:id)
+
+    @desc "Name of the lesson."
+    field :name, non_null(:string)
+
+    @desc "Name of the markup."
+    field :markup, non_null(:string)
+
+    @desc "Identifies the date and time when the object was created."
+    field :date_inserted, non_null(:datetime)
+
+    @desc "Identifies the date and time when the object was last updated."
+    field :date_updated, non_null(:datetime)
+  end
+
   ##
   # Queries
   ##
@@ -47,6 +71,12 @@ defmodule HomeImprovementApi.Types.Courses do
     field :course, :course do
       arg :id, non_null(:id)
       resolve &Resolvers.Courses.course/2
+    end
+
+    @desc "Get lesson by id."
+    field :lesson, :lesson do
+      arg :id, non_null(:id)
+      resolve &Resolvers.Courses.lesson/2
     end
   end
 

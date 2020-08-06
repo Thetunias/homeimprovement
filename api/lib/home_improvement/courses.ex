@@ -150,6 +150,22 @@ defmodule HomeImprovement.Courses do
   def get_lesson!(id), do: Repo.get!(Lesson, id)
 
   @doc """
+  Gets a single lesson.
+
+  Returns `nil` if the lesson does not exist.
+
+  ## Examples
+
+      iex> get_lesson(123)
+      %Lesson{}
+
+      iex> get_lesson(456)
+      nil
+
+  """
+  def get_lesson(id), do: Repo.get(Lesson, id)
+
+  @doc """
   Creates a lesson.
 
   ## Examples
