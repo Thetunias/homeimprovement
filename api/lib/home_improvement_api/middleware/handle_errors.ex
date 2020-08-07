@@ -10,14 +10,42 @@ defmodule HomeImprovementApi.Middleware.HandleErrors do
 
       # Resolver function
       def get(%{id: id}, _context) do
-        Domain.get_item(id)
+        Context.get_item(id)
       end
   """
 
   @behaviour Absinthe.Middleware
 
+  defp handle_error(%{__struct__: Ecto.Changeset} = changeset) do
+    {:ok, %{errors: transform_errors(changeset)}}
+  end
+
   defp handle_error(error) do
     {:error, error}
+  end
+
+  defp transform_errors(%{__struct__: Ecto.Changeset} = changeset) do
+    for {field, errors} <- Ecto.Changeset.traverse_errors(changeset, &format_error/1) do
+      %{
+        field: field,
+        errors:
+          for {message, opts} <- errors do
+            %{
+              type: opts[:validation] || :unique,
+              message: message
+            }
+          end
+      }
+    end
+  end
+
+  defp format_error({msg, opts}) do
+    msg =
+      Enum.reduce(opts, msg, fn {key, value}, acc ->
+        String.replace(acc, "%{#{key}}", to_string(value))
+      end)
+
+    {msg, opts}
   end
 
   @impl Absinthe.Middleware

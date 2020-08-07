@@ -11,15 +11,9 @@ defmodule HomeImprovementApi.Resolvers.Courses do
     {:ok, Courses.get_lesson(id)}
   end
 
-  def create_course(%{input: course}, _resolution) do
-    case Courses.create_course(course) do
-      {:ok, course} ->
-        {:ok, %{course: course}}
-
-      {:error, reason} ->
-        IO.inspect(reason)
-
-        {:error, reason.errors}
+  def create_course(%{input: attrs}, _resolution) do
+    with {:ok, course} <- Courses.create_course(attrs) do
+      {:ok, %{course: course}}
     end
   end
 end
