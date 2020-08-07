@@ -33,6 +33,25 @@ defmodule HomeImprovementApi.MutationFactory do
         text
       }
     }
+    """,
+    create_course: """
+    mutation create_course($input: CreateCourseInput!) {
+      create_course(input: $input) {
+        course {
+          id
+          date_inserted
+          date_updated
+          name
+        }
+        errors {
+          field
+          errors {
+            message
+            type
+          }
+        }
+      }
+    }
     """
   }
 

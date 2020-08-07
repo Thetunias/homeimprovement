@@ -43,26 +43,37 @@ defmodule HomeImprovementApi.Types.Courses do
     @desc "ID of the object."
     field :id, non_null(:id)
 
-    @desc "ID of the parent object."
+    @desc "ID of the parent lesson."
     field :id_parent, :id
 
     @desc "ID of the user who created the lesson."
     field :id_user_creator, non_null(:id)
 
-    @desc "ID of the course object."
+    @desc "ID of the lesson's course."
     field :id_course, non_null(:id)
-
-    @desc "Name of the lesson."
-    field :name, non_null(:string)
-
-    @desc "Name of the markup."
-    field :markup, non_null(:string)
 
     @desc "Identifies the date and time when the object was created."
     field :date_inserted, non_null(:datetime)
 
     @desc "Identifies the date and time when the object was last updated."
     field :date_updated, non_null(:datetime)
+
+    @desc "Name of the lesson."
+    field :name, non_null(:string)
+
+    @desc "Markup of the lesson."
+    field :markup, non_null(:string)
+  end
+
+  @desc "Payload from creating, updating, deleting a course."
+  object :course_payload do
+    field :errors, list_of(non_null(:input_error))
+    field :course, :course
+  end
+
+  input_object :create_course_input do
+    field :id_user_creator, non_null(:id)
+    field :name, non_null(:string)
   end
 
   ##
@@ -88,5 +99,10 @@ defmodule HomeImprovementApi.Types.Courses do
   ##
 
   object :courses_mutations do
+    @desc "Create new course."
+    field :create_course, :course_payload do
+      arg :input, non_null(:create_course_input)
+      resolve &Resolvers.Courses.create_course/2
+    end
   end
 end

@@ -10,4 +10,10 @@ defmodule HomeImprovementApi.Resolvers.Courses do
   def lesson(%{id: id}, _resolution) do
     {:ok, Courses.get_lesson(id)}
   end
+
+  def create_course(%{input: attrs}, _resolution) do
+    with {:ok, course} <- Courses.create_course(attrs) do
+      {:ok, %{course: course}}
+    end
+  end
 end
