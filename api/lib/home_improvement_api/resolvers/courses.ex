@@ -7,6 +7,10 @@ defmodule HomeImprovementApi.Resolvers.Courses do
     {:ok, Courses.get_course(id)}
   end
 
+  def courses(_args, _resolution) do
+    {:ok, Courses.list_courses()}
+  end
+
   def lesson(%{id: id}, _resolution) do
     {:ok, Courses.get_lesson(id)}
   end
