@@ -19,5 +19,7 @@ defmodule HomeImprovement.Repo.Migrations.CreateLessons do
     create index(:lessons, [:id_course])
     create index(:lessons, [:id_parent])
     create index(:lessons, [:id_user_creator])
+
+    create unique_index(:lessons, [:name, :id_course])
   end
 end
