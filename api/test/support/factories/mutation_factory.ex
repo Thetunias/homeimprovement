@@ -52,6 +52,26 @@ defmodule HomeImprovementApi.MutationFactory do
         }
       }
     }
+    """,
+    create_lesson: """
+    mutation create_lesson($input: CreateLessonInput!) {
+      create_lesson(input: $input) {
+        lesson {
+          id
+          date_inserted
+          date_updated
+          name
+          markup
+        }
+        errors {
+          field
+          errors {
+            message
+            type
+          }
+        }
+      }
+    }
     """
   }
 
