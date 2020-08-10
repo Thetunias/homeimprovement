@@ -87,6 +87,11 @@ defmodule HomeImprovementApi.Types.Courses do
       resolve &Resolvers.Courses.course/2
     end
 
+    @desc "List all courses."
+    field :courses, non_null(list_of(non_null(:course))) do
+      resolve &Resolvers.Courses.courses/2
+    end
+
     @desc "Get lesson by id."
     field :lesson, :lesson do
       arg :id, non_null(:id)

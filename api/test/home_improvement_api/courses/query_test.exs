@@ -29,6 +29,20 @@ defmodule HomeImprovementApi.Courses.QueryTest do
     end
   end
 
+  describe "courses" do
+    setup [:create_user, :create_course]
+
+    test "returns all courses", %{course: course} do
+      {:ok, %{data: data}} = run(query(:courses))
+
+      [returned_course] = data["courses"]
+
+      assert returned_course["name"] == course.name
+      assert returned_course["date_inserted"]
+      assert returned_course["date_updated"]
+    end
+  end
+
   describe "lesson" do
     setup [:create_user, :create_course, :create_lesson]
 
