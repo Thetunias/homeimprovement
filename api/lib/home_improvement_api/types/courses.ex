@@ -71,9 +71,23 @@ defmodule HomeImprovementApi.Types.Courses do
     field :course, :course
   end
 
+  @desc "Payload from creating, updating, deleting a lesson."
+  object :lesson_payload do
+    field :errors, list_of(non_null(:input_error))
+    field :lesson, :lesson
+  end
+
   input_object :create_course_input do
     field :id_user_creator, non_null(:id)
     field :name, non_null(:string)
+  end
+
+  input_object :create_lesson_input do
+    field :id_user_creator, non_null(:id)
+    field :name, non_null(:string)
+    field :markup, :string
+    field :id_parent, :id
+    field :id_course, non_null(:id)
   end
 
   ##
@@ -108,6 +122,12 @@ defmodule HomeImprovementApi.Types.Courses do
     field :create_course, :course_payload do
       arg :input, non_null(:create_course_input)
       resolve &Resolvers.Courses.create_course/2
+    end
+
+    @desc "Create new lesson."
+    field :create_lesson, :lesson_payload do
+      arg :input, non_null(:create_lesson_input)
+      resolve &Resolvers.Courses.create_lesson/2
     end
   end
 end
