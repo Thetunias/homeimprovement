@@ -16,7 +16,9 @@ defmodule HomeImprovementApi.Types.Courses do
   """
 
   use Absinthe.Schema.Notation
+  import HomeImprovementApi.Assoc
 
+  alias HomeImprovement.Courses
   alias HomeImprovementApi.Resolvers
 
   ##
@@ -36,6 +38,10 @@ defmodule HomeImprovementApi.Types.Courses do
 
     @desc "Name of the course."
     field :name, non_null(:string)
+
+    @desc "lessons of the course."
+    field :lessons, non_null(list_of(non_null(:lesson))),
+      resolve: assoc(:many, {:id, :id_course}, &Courses.get_courses_lessons/1)
   end
 
   @desc "Lesson object type."
