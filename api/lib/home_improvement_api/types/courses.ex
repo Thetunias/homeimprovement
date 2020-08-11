@@ -18,8 +18,8 @@ defmodule HomeImprovementApi.Types.Courses do
   use Absinthe.Schema.Notation
   import HomeImprovementApi.Assoc
 
-  alias HomeImprovementApi.Resolvers
   alias HomeImprovement.Courses
+  alias HomeImprovementApi.Resolvers
 
   ##
   # Types
