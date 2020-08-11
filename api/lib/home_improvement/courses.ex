@@ -133,6 +133,12 @@ defmodule HomeImprovement.Courses do
     Repo.all(Lesson)
   end
 
+  def get_courses_lessons([id | _] = course_ids) when is_integer(id) do
+    Lesson
+    |> where([l], l.id_course in ^course_ids)
+    |> Repo.all()
+  end
+
   @doc """
   Gets a single lesson.
 

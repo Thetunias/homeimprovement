@@ -43,6 +43,22 @@ defmodule HomeImprovementApi.Courses.QueryTest do
     end
   end
 
+  describe "courses with lessons" do
+    setup [:create_user, :create_course]
+
+    test "returns all courses with their lessons", %{course: course, user: user} do
+      {:ok, [lesson: _lesson1]} = create_lesson(user: user, course: course)
+      {:ok, [lesson: _lesson2]} = create_lesson(user: user, course: course)
+      {:ok, [lesson: _lesson3]} = create_lesson(user: user, course: course)
+
+      {:ok, %{data: data}} = run(query(:courses_with_lessons))
+
+      [returned_course] = data["courses"]
+
+      assert length(returned_course["lessons"]) == 3
+    end
+  end
+
   describe "lesson" do
     setup [:create_user, :create_course, :create_lesson]
 
