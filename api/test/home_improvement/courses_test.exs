@@ -97,6 +97,40 @@ defmodule HomeImprovement.CoursesTest do
     end
   end
 
+  describe "get_courses_lessons/1" do
+    setup [:create_user]
+
+    test "returns lessons for multiple courses", %{user: user} do
+      {:ok, [course: course1]} = create_course(user: user)
+      {:ok, [lesson: course1_lesson1]} = create_lesson(user: user, course: course1)
+      {:ok, [lesson: course1_lesson2]} = create_lesson(user: user, course: course1)
+
+      {:ok, [course: course2]} = create_course(user: user)
+      {:ok, [lesson: course2_lesson1]} = create_lesson(user: user, course: course2)
+      {:ok, [lesson: course2_lesson2]} = create_lesson(user: user, course: course2)
+
+      returned_lessons = Courses.get_courses_lessons([course1.id, course2.id])
+
+      assert length(returned_lessons) == 4
+      assert course1_lesson1 in returned_lessons
+      assert course1_lesson2 in returned_lessons
+      assert course2_lesson1 in returned_lessons
+      assert course2_lesson2 in returned_lessons
+    end
+
+    test "returns lessons for only courses provided", %{user: user} do
+      {:ok, [course: course1]} = create_course(user: user)
+      {:ok, [lesson: _course1_lesson1]} = create_lesson(user: user, course: course1)
+      {:ok, [lesson: _course1_lesson2]} = create_lesson(user: user, course: course1)
+
+      {:ok, [course: course2]} = create_course(user: user)
+      {:ok, [lesson: course2_lesson1]} = create_lesson(user: user, course: course2)
+      {:ok, [lesson: course2_lesson2]} = create_lesson(user: user, course: course2)
+
+      assert Courses.get_courses_lessons([course2.id]) == [course2_lesson2, course2_lesson1]
+    end
+  end
+
   describe "get_lesson!/1" do
     setup [:create_user, :create_course, :create_lesson]
 
