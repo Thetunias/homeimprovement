@@ -133,6 +133,15 @@ defmodule HomeImprovement.Courses do
     Repo.all(Lesson)
   end
 
+  @doc """
+  Returns a list of lessons that are apart of provided courses.
+
+  ## Examples
+
+      iex> get_courses_lessons([1, 2, 3])
+      [%Lesson{}, ...]
+
+  """
   def get_courses_lessons([id | _] = course_ids) when is_integer(id) do
     Lesson
     |> where([l], l.id_course in ^course_ids)
