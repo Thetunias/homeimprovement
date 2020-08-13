@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HttpLink httpLink =
-        HttpLink(uri: "https://0b55173487db.ngrok.io/api");
+        HttpLink(uri: "https://a5ad42fdb9a5.ngrok.io/api");
     final ValueNotifier<GraphQLClient> client = ValueNotifier<GraphQLClient>(
       GraphQLClient(
         link: httpLink as Link,
@@ -29,7 +30,7 @@ class HomePage extends StatelessWidget {
   final String query = r"""
                     query {
                       user(id: 1){
-                        name
+                        nameFirst
                       }
                     }
                   """;
@@ -50,8 +51,7 @@ class HomePage extends StatelessWidget {
           if (result.data == null) {
             return Text("No Data Found !");
           }
-          print(result.data);
-          return Text("Text Loaded");
+          return Text(result.data["user"]["nameFirst"]);
         },
       ),
     );
