@@ -1,6 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'course_screen.dart';
 
 void main() {
   runApp(MaterialApp(title: "Homeimprovement", home: MyApp()));
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   final String query = r"""
                     query {
-                      user(id: 1){
+                      user(id: 1) {
                         nameFirst
                       }
                     }
@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
           if (result.data == null) {
             return Text("No Data Found !");
           }
-          return Text(result.data["user"]["nameFirst"]);
+          return CourseScreen();
         },
       ),
     );
