@@ -127,7 +127,11 @@ defmodule HomeImprovement.CoursesTest do
       {:ok, [lesson: course2_lesson1]} = create_lesson(user: user, course: course2)
       {:ok, [lesson: course2_lesson2]} = create_lesson(user: user, course: course2)
 
-      assert Courses.get_courses_lessons([course2.id]) == [course2_lesson2, course2_lesson1]
+      returned_lessons = Courses.get_courses_lessons([course2.id])
+
+      assert length(returned_lessons) == 2
+      assert course2_lesson2 in returned_lessons
+      assert course2_lesson1 in returned_lessons
     end
   end
 
