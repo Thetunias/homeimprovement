@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "api"
+		},
+		{
+      "path": "homeimprovement",
+      "name": "client"
+		},
+		{
+      "path": "."
+		}
+	],
+  "settings": {}
+}
