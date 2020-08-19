@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:markdown_widget/markdown_widget.dart';
 
 class LessonScreen extends StatelessWidget {
   final String lessonQuery = r"""
@@ -37,7 +38,12 @@ class LessonScreen extends StatelessWidget {
 
             return Column(children: <Widget>[
               Text(lesson["name"], style: TextStyle(fontSize: 20)),
-              Text(lesson["markup"], style: TextStyle(fontSize: 20))
+              Scaffold(
+                body: Container(
+                  margin: EdgeInsets.all(10),
+                  child: MarkdownWidget(data: lesson["markup"]),
+                ),
+              )
             ]);
           },
         ));
