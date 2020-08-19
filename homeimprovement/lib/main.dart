@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'course_screen.dart';
+import 'package:homeimprovement/screens/lesson.dart';
+import 'screens/course.dart';
 
 void main() {
-  runApp(MaterialApp(title: "Homeimprovement", home: MyApp()));
+  runApp(MaterialApp(
+    title: "Homeimprovement",
+    initialRoute: '/',
+    routes: {
+      // When navigating to the "/" route, build the FirstScreen widget.
+      '/': (context) => MyApp(
+            child: CourseScreen(),
+          ),
+      // When navigating to the "/second" route, build the SecondScreen widget.
+      '/lesson': (context) => MyApp(child: LessonScreen()),
+    },
+  ));
 }
 
 class MyApp extends StatelessWidget {
+  final Widget child;
+
+  MyApp({@required this.child}) : super();
+
   @override
   Widget build(BuildContext context) {
     final HttpLink httpLink =
@@ -20,40 +36,8 @@ class MyApp extends StatelessWidget {
       ),
     );
     return GraphQLProvider(
-      child: HomePage(),
+      child: child,
       client: client,
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  final String query = r"""
-                    query {
-                      user(id: 1) {
-                        nameFirst
-                      }
-                    }
-                  """;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Homeimprovement"),
-      ),
-      body: Query(
-        options: QueryOptions(document: query),
-        builder: (QueryResult result,
-            {VoidCallback refetch, FetchMore fetchMore}) {
-          if (result.loading) {
-            return Center(child: CircularProgressIndicator());
-          }
-          if (result.data == null) {
-            return Text("No Data Found !");
-          }
-          return CourseScreen();
-        },
-      ),
     );
   }
 }
